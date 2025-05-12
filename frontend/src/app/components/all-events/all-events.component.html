@@ -1,0 +1,86 @@
+<div class="home">
+    <app-navbar></app-navbar>
+
+    <div class="body">
+        <div class="container">
+
+
+            <div class="header">
+                <div class="header-text">
+                    <h1>All Events</h1>
+                    <p>
+                        Browse and book from our selection of amazing events.
+                    </p>
+                </div>
+                <div class="filters">
+                    <input type="text" class="search-input" placeholder="Search events...">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn category-dropdown dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Select Category
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Sports</a></li>
+                            <li><a class="dropdown-item" href="#">TECH</a></li>
+                            <li><a class="dropdown-item" href="#">Education</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">All categories</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="events">
+                <div class="events_list">
+
+
+
+
+                    <!-- @for (event of events; track event._id) { -->
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <app-card></app-card>
+                    <!-- } -->
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
