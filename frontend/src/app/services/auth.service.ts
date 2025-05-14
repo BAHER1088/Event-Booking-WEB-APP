@@ -9,6 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 interface DecodedToken {
   _id: string;
   exp: number;
+  role: string;
 }
 
 @Injectable({
@@ -30,7 +31,7 @@ export class AuthService {
   currentUser = new BehaviorSubject(null);
 
 
-saveCurrentUser() {
+  saveCurrentUser() {
     const token: any = localStorage.getItem('user');
     this.currentUser.next(jwtDecode(token));
   }
@@ -38,18 +39,27 @@ saveCurrentUser() {
 
   checkToken() {
     const token: any = localStorage.getItem('user');
-    if (!token){ return false}
+    if (!token) { return false }
     const decodedToken = jwtDecode<DecodedToken>(token);
     console.log(decodedToken);
-    if (decodedToken.exp! < Date.now() / 1000 ) {
+    if (decodedToken.exp! < Date.now() / 1000) {
       this.logout()
       this._Router.navigate(['/home'])
-      return false ;
+      return false;
+    } else {
+      return true;
     }
-    return true;
   }
-   
-   singUp(myData: any): Observable<any> {
+
+  isAdmin() {
+    const token: any = localStorage.getItem('user');
+    if (!token) { return false }
+    const decodedToken = jwtDecode<DecodedToken>(token);
+    if (decodedToken.exp! < Date.now() / 1000) { return false }
+    return decodedToken.role === 'admin';
+  }
+
+  singUp(myData: any): Observable<any> {
     // const headers = new HttpHeaders().set('Accept-Language', 'ar');
     // return this._HttpClient.post(`${this.hostName}${this.routeName}/signup`, myData ,{headers})
     return this._HttpClient.post(`${this.hostName}${this.routeName}/signup`, myData)

@@ -120,21 +120,18 @@ app-navbar {
                         &:hover {
                             background-color: var(--primary);
                             color: var(--light-surface);
-
                         }
                     }
                 }
             }
 
             .events_list {
-               
-                
                 display: grid;
                 grid-template-columns: repeat(2, 50%);
                 grid-row-gap: 100px;
-                app-most-popular {
-                  display: flex;
-                justify-content: center;
+                app-card {
+                    display: flex;
+                    justify-content: center;
                 }
             }
             .view-more {

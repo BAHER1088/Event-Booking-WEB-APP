@@ -39,7 +39,9 @@
             <div class="events">
                 <div class="events_list">
 
-
+                    @for(event of events; track event._id){
+                    <app-card [event]="event"></app-card>
+                    }
 
 
                     <!-- @for (event of events; track event._id) { -->

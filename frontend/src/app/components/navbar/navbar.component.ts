@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 isToken :boolean=false ;
+isAdmin :boolean=false ;
 
 constructor(private _AuthService :AuthService){}
 logout(){
@@ -20,5 +21,6 @@ logout(){
 }
 ngOnInit(): void {
 this.isToken = this._AuthService.checkToken();
+this.isAdmin = this._AuthService.isAdmin();
 }
 }
