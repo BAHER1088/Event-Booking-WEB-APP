@@ -11,12 +11,12 @@ export class ThemeService {
 
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         if (isPlatformBrowser(this.platformId)) {
-            // Check for saved theme preference
+            
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 this.setTheme(savedTheme === 'dark');
             } else {
-                // Check system preference
+                
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 this.setTheme(prefersDark);
             }
@@ -35,7 +35,6 @@ export class ThemeService {
             document.documentElement.style.setProperty('--text-secondary', isDark ? 'var(--dark-text-secondary)' : 'var(--light-text-secondary)');
             document.documentElement.style.setProperty('--text-tertiary', isDark ? 'var(--dark-text-tertiary)' : 'var(--light-text-tertiary)');
             
-            // Save preference
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
     }

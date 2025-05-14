@@ -1,6 +1,6 @@
 <div class="body">
     <div class="container" id="a-container">
-      <form class="form" id="a-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="form" id="a-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
         <h2 class="form_title title">Login</h2>
   
         <div class="form-group">
@@ -9,8 +9,7 @@
           loginForm.get('email')?.errors) {
           <p class="error-message">
             @if (loginForm.get('email')?.errors?.['required']) { Email is required }
-            @if (loginForm.get('email')?.errors?.['email']) { Please enter a valid
-            email }
+            @if (loginForm.get('email')?.errors?.['email']) { Please enter a valid email }
           </p>
           }
         </div>
