@@ -29,12 +29,13 @@ export class AllEventsComponent implements OnInit, OnDestroy{
       next: (res) => {
       this.events = res.data;
       this.pagination = res.pagination
+      this.errorMessage=" ";
        }, error: (err) => {
           this.errorMessage = err.error.message;
       }
-    })
-     
+    }) 
   }
+  
   changePage(page: number) {
     this.page = page;
     this.loadEvents();
@@ -47,6 +48,7 @@ export class AllEventsComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this._AuthService.checkToken();
     this.imgDomain = this._eventService.eventImages;
+    
     this.loadEvents();
     
   }
