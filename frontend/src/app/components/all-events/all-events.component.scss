@@ -142,7 +142,11 @@ app-navbar {
                     display: flex;
                     justify-content: center;
                 }
+               
             }
+             .current{
+                   background-color: rgb(194, 194, 194);
+                }
             
             .view-more {
                 display: flex;

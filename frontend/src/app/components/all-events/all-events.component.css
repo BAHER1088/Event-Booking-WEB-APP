@@ -129,6 +129,9 @@ app-navbar {
   display: flex;
   justify-content: center;
 }
+.body .container .events .current {
+  background-color: rgb(194, 194, 194);
+}
 .body .container .events .view-more {
   display: flex;
   justify-content: center;

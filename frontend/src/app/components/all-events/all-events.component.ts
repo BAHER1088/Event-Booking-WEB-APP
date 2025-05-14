@@ -5,11 +5,12 @@ import { RouterModule } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { AuthService } from '../../services/auth.service';
 import { CardComponent } from "../card/card.component";
-import { RouterLink } from '@angular/router';
+import { Pagination } from '../../interfaces/pagination';
+
 
 @Component({
   selector: 'app-all-events',
-  imports: [NavbarComponent, FooterComponent, RouterModule, CardComponent, RouterLink],
+  imports: [NavbarComponent, FooterComponent, RouterModule, CardComponent],
   templateUrl: './all-events.component.html',
   styleUrl: './all-events.component.scss'
 })
@@ -19,18 +20,37 @@ export class AllEventsComponent implements OnInit, OnDestroy{
   subscription: any;
   imgDomain: string = '';
   events: any[] = [];
-
-
+  page: number = 1;
+  pagination: Pagination = {};
+  category:string = "";
+  errorMessage:string = "";
+  loadEvents() {
+    this.subscription = this._eventService.getevents(4, this.page,this.category).subscribe({
+      next: (res) => {
+      this.events = res.data;
+      this.pagination = res.pagination
+      this.errorMessage=" ";
+       }, error: (err) => {
+          this.errorMessage = err.error.message;
+      }
+    }) 
+  }
+  
+  changePage(page: number) {
+    this.page = page;
+    this.loadEvents();
+  }
+  setCategoty(category:string){
+    this.category=category;
+    this.page=1;
+    this.loadEvents();
+  }
   ngOnInit(): void {
     this._AuthService.checkToken();
-
     this.imgDomain = this._eventService.eventImages;
-    console.log(this.imgDomain);
-    this.subscription = this._eventService.getevents(14, 1).subscribe((res) => {
-      this.events = res.data;
-      console.log(this.events);
-      console.log(this.imgDomain + this.events[0].image);
-    })
+    
+    this.loadEvents();
+    
   }
 
   ngOnDestroy(): void { this.subscription.unsubscribe() }

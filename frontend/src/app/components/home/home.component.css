@@ -122,7 +122,7 @@ app-navbar {
   grid-template-columns: repeat(2, 50%);
   grid-row-gap: 100px;
 }
-.body .container .events .events_list app-most-popular {
+.body .container .events .events_list app-card {
   display: flex;
   justify-content: center;
 }
