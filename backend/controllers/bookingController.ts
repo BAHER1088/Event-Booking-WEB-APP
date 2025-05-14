@@ -19,7 +19,7 @@ export const bookEvent = asyncHandler(async (req: any, res: Response, next: Next
     const exictingBook = await bookingModel.findOne({userId:userId ,eventId: eventId})
     if(exictingBook)
     {
-      exictingBook.NumOfTickets!+=1;
+      exictingBook.numOfTickets!+=1;
       await exictingBook.save();
       res.status(201).json({
       message :  req.t("congrats_enjoy_event")})

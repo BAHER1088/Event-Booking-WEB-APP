@@ -9,7 +9,7 @@ const bookingSchema :Schema =new Schema <Booking>(
        refCode:{type:String ,required :true},
        eventName:{type:String ,required :true},
        price:{type:Number ,required :true},
-       NumOfTickets:{type:Number , default:1},
+       numOfTickets:{type:Number , default:1},
        createdAt:{type :Date , required:true},
     },
     {

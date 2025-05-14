@@ -6,7 +6,7 @@ export interface Booking extends Document {
   refCode:string;
   eventName:string;
   price:number;
-  NumOfTickets?:number;
+  numOfTickets?:number;
   createdAt:Date;
 
 }
