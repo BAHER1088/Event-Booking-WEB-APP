@@ -12,25 +12,18 @@
                         Browse and book from our selection of amazing events.
                     </p>
                 </div>
-                <div class="filters">
-                    <input type="text" class="search-input" placeholder="Search events...">
-
-                    <div class="btn-group">
-                        <button type="button" class="btn category-dropdown dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Select Category
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Sports</a></li>
-                            <li><a class="dropdown-item" href="#">TECH</a></li>
-                            <li><a class="dropdown-item" href="#">Education</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">All categories</a></li>
-                        </ul>
-                    </div>
+                <h1 class="text-center">Catefories</h1>
+                <div class="d-flex justify-content-center filters">
+                    <button class="m-2 p-2" (click)="setCategoty('')">ALL</button>
+                    <button class="m-2 p-2" (click)="setCategoty('tech')">Tech</button>
+                    <button class="m-2 p-2" (click)="setCategoty('design')">Design</button>
+                    <button class="m-2 p-2" (click)="setCategoty('business')">Business</button>
+                    <button class="m-2 p-2" (click)="setCategoty('education')">Education</button>
+                    <button class="m-2 p-2" (click)="setCategoty('workshop')">Workshop</button>
+                    <button class="m-2 p-2" (click)="setCategoty('health')">Health</button>
                 </div>
+               
+
             </div>
 
 
@@ -42,47 +35,28 @@
                     @for(event of events; track event._id){
                     <app-card [event]="event"></app-card>
                     }
-
-
-                    <!-- @for (event of events; track event._id) { -->
-                    <!-- <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card>
-                    <app-card></app-card> -->
-                    <!-- } -->
-
-
-
-
-
-
-
-
-
-
+                </div>
+                <div class="m-auto mt-5 w-25 ">
+                    <ul class="pagination">
+                        @if(pagination.prev){<li (click)="changePage(pagination.prev)" class="page-item"><button
+                                class="page-link">Previous</button></li>}
+                        @if(pagination.currentPage!==1)
+                        {<li (click)="changePage(1)" class="page-item"><button class="page-link">1</button></li>}
+                        <li class="page-item "><button class="page-link current">{{pagination.currentPage}}</button></li>
+                        @if(pagination.currentPage!==pagination.totalPages)
+                        {<li (click)="changePage(pagination.totalPages!)" class="page-item"><button
+                                class="page-link">{{pagination.totalPages}}</button></li>}
+                        @if(pagination.next){<li (click)="changePage(pagination.next)" class="page-item"><button
+                                class="page-link">Next</button></li>}
+                    </ul>
+                    @if(errorMessage!==''){
+                  <p class="error-message">{{errorMessage}}</p>
+                 }
                 </div>
 
 
             </div>
         </div>
     </div>
-    <app-footer></app-footer>
+
 </div>
