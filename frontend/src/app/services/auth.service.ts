@@ -40,6 +40,7 @@ saveCurrentUser() {
     const token: any = localStorage.getItem('user');
     if (!token){ return false}
     const decodedToken = jwtDecode<DecodedToken>(token);
+    console.log(decodedToken);
     if (decodedToken.exp! < Date.now() / 1000 ) {
       this.logout()
       this._Router.navigate(['/home'])
