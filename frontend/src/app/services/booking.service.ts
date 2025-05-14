@@ -20,4 +20,7 @@ export class BookingService {
   bookEvent(id: string): Observable<any> {
     return this._HttpClient.post(`${this.hostName}${this.routeName}/${id}`,null,{ headers: { authorization: `Bearer ${localStorage.getItem('user')}` } })
   }
+  getUserTickets(): Observable<any> {
+    return this._HttpClient.get(`${this.hostName}${this.routeName}`,{ headers: { authorization: `Bearer ${localStorage.getItem('user')}` } })
+  }
 }
