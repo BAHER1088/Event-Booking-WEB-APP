@@ -10,7 +10,7 @@ export class DataService {
   
   private eventIdSource = new BehaviorSubject<string>("");
   currentId = this.eventIdSource.asObservable();
-  seteventID(id: string) {
+  setEventID(id: string) {
     this.eventIdSource.next(id);
   }
 
