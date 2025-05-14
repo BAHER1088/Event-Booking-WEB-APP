@@ -13,20 +13,26 @@ export const bookEvent = asyncHandler(async (req: any, res: Response, next: Next
     const event = await eventModel.findById(eventId);
     if(!event)
     {
-        res.status(404).json({message : req.t("event_not_exist")})
+      res.status(404).json({message : req.t("event_not_exist")})
     }
 
     const exictingBook = await bookingModel.findOne({userId:userId ,eventId: eventId})
     if(exictingBook)
     {
-        res.status(400).json({message :  req.t("ticket_already")})
-        return;
+      exictingBook.NumOfTickets!+=1;
+      await exictingBook.save();
+      res.status(201).json({
+      message :  req.t("congrats_enjoy_event")})
+     return ;
+
     }
 
     const newBook = await bookingModel.create(
     {
         userId : userId,
         eventId : eventId,
+        eventName : event?.name,
+        price: event?.price,
         refCode:  new utils().generateReferenceCode() ,
         createdAt: Date.now()
     }
