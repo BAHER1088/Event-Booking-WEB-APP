@@ -32,10 +32,14 @@
                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 search-input" type="search" placeholder="Search Events" aria-label="Search" />
-                <button class="btn btn-outline-success search-btn" type="submit">Search</button>
-            </form>
+            <div class="d-flex" role="search">
+                @if(!isToken){
+                <button class="btn btn-outline-success search-btn"  routerLink="/login" >Login</button>
+                <button class="btn btn-outline-success search-btn"  routerLink="/signup">Signup</button>
+                }@else{
+                <button class="btn btn-outline-success search-btn" (click)="logout()" >Logout</button>
+                }
+            </div>
         </div>
     </div>
 </nav>
