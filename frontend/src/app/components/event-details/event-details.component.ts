@@ -54,8 +54,6 @@ export class EventDetailsComponent {
     this.subscription = this._bookingService.bookEvent(id).subscribe({
       next: (res) => {
         this._router.navigate(['/home']);
-        // route to congrats component 
-        //  this._router.navigate(['/congrats'])
       }, error: (err) => {
         console.log(err)
         this.errorMessage = err.error.message;

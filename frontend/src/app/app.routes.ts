@@ -9,6 +9,7 @@ import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { adminGuard } from './guards/admin.guard';
 import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,8 +19,9 @@ export const routes: Routes = [
     { path: 'events', component: AllEventsComponent },
     { path: 'event-details',canActivate : [authGuard], component: EventDetailsComponent },
     { path: 'all-events', component: AllEventsComponent },
-    // { path: 'profile', canActivate : [authGuard],component: ProfileComponent },
     { path: 'my-tickets', canActivate : [authGuard],component: MyTicketsComponent },
     { path: 'dashboard', canActivate : [authGuard,adminGuard],component: DashboardComponent },
+    { path: 'create-event', canActivate : [authGuard,adminGuard],component: CreateEventComponent },
+
     { path: '**', redirectTo: '/home' }
 ];
