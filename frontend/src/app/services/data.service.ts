@@ -14,5 +14,4 @@ export class DataService {
     this.eventIdSource.next(id);
   }
 
-  
 }

@@ -10,7 +10,7 @@ export class BookingService {
 
   private hostName: string = ''
   private routeName: string = ''
- 
+
   constructor(private _HttpClient: HttpClient, private _GlobalService: GlobalService) {
     this.hostName = this._GlobalService.hostName;
     this.routeName = this._GlobalService.bookRoute;

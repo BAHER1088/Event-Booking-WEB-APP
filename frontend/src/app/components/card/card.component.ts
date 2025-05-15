@@ -5,6 +5,7 @@ import { DescriptionPipe } from '../../pipes/description.pipe';
 import { RouterLink } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-card',
@@ -16,11 +17,19 @@ export class CardComponent {
   @Input() event: any;
   imgDomain: string = '';
   isAdmin: boolean = false;
+  atDashboard: boolean = false;
 
-  constructor(private _eventService: EventService , private _dataService :DataService , private _authService: AuthService) {
+  constructor(
+    private _eventService: EventService,
+    private _dataService: DataService,
+    private _authService: AuthService,
+    private _location: Location
+  ) {
     this.imgDomain = this._eventService.eventImages;
     this.isAdmin = this._authService.isAdmin();
+    this.atDashboard = this._location.path().includes('/dashboard');
   }
+  
   setId(id:string){
     this._dataService.setEventID(id);
   }

@@ -34,11 +34,11 @@ import {
   withI18nSupport,
   withIncrementalHydration,
   withNoHttpTransferCache
-} from "./chunk-GYFZNPHL.js";
-import "./chunk-DM6S6BDF.js";
+} from "./chunk-QIGMPKJE.js";
 import {
   getDOM
 } from "./chunk-QDYYR3LW.js";
+import "./chunk-DM6S6BDF.js";
 import "./chunk-55MOB3KI.js";
 import "./chunk-OO74OAGZ.js";
 import "./chunk-P6U2JBMQ.js";

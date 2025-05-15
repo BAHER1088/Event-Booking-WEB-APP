@@ -40,7 +40,7 @@ export class AllEventsComponent implements OnInit, OnDestroy{
     this.page = page;
     this.loadEvents();
   }
-  setCategoty(category:string){
+  setCategory(category:string){
     this.category=category;
     this.page=1;
     this.loadEvents();
