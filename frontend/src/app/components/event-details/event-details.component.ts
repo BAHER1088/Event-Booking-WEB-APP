@@ -17,38 +17,51 @@ export class EventDetailsComponent {
   id: string = '';
   imgDomain: string = '';
   event: any = {};
-  errorMessage:string = ""
+  errorMessage: string = ""
+  tickets: number = 0;
 
-  constructor(private _EventService :EventService,private _bookingService :BookingService, private _router:Router ,private _dataService :DataService) { }
+  constructor(private _EventService: EventService, private _bookingService: BookingService, private _router: Router, private _dataService: DataService) { }
 
-  loadevent() {
-      this.subscription = this._EventService.getOneEvent(this.id).subscribe({
+  loadEvent() {
+    this.subscription = this._EventService.getOneEvent(this.id).subscribe({
       next: (res) => {
-      this.event = res.data;
-       }, error: (err) => {
+        this.event = res.data;
+        console.log(this.event)
+      }, error: (err) => {
         console.log(err)
       }
     })
   }
- ngOnInit(): void {
-    this.imgDomain = this._EventService.eventImages;
-    this._dataService.currentId.subscribe((id: string) => {
-    this.id = id;
-    this.loadevent();
-  });
- }
- book(id:string){
-      this.subscription = this._bookingService.bookEvent(id).subscribe({
+
+  loadTickets() {
+    this.subscription = this._bookingService.getUserTickets().subscribe({
       next: (res) => {
-       this._router.navigate(['/home']);
-       // route to congrats component 
-      //  this._router.navigate(['/congrats'])
-       }, error: (err) => {
-        console.log(err)
-        this.errorMessage =err.error.message;
+        this.tickets = res.data.NumOfTickets;
+        console.log(this.tickets);
       }
     })
- }
+  }
+
+  ngOnInit(): void {
+    this.imgDomain = this._EventService.eventImages;
+    this._dataService.currentId.subscribe((id: string) => {
+      this.id = id;
+      this.loadEvent();
+      this.loadTickets();
+    });
+  }
+  book(id: string) {
+    this.subscription = this._bookingService.bookEvent(id).subscribe({
+      next: (res) => {
+        this._router.navigate(['/home']);
+        // route to congrats component 
+        //  this._router.navigate(['/congrats'])
+      }, error: (err) => {
+        console.log(err)
+        this.errorMessage = err.error.message;
+      }
+    })
+  }
 
 
   ngOnDestroy(): void { this.subscription.unsubscribe(); }

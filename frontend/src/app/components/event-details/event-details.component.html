@@ -1,10 +1,10 @@
- <app-navbar></app-navbar>
+<app-navbar></app-navbar>
 <div class="container my-5">
   <div class="row">
     <div class="col-md-5">
       <div class="main-img">
-        <img class="img-fluid" [src]="imgDomain+ event.image" [alt]="event.name">
-         
+        <img class="img-fluid" [src]="imgDomain+ event.image" [alt]="event.name" title="event image">
+
       </div>
     </div>
 
@@ -25,12 +25,11 @@
         <button class="m-2 p-2" (click)="book(event._id)">Book Now</button>
         <p>{{errorMessage}}</p>
       </div>
-       
-       
-       
+
+
+
     </div>
-   
+
   </div>
-  
+
 </div>
- 
