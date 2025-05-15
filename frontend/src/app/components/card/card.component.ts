@@ -32,4 +32,12 @@ export class CardComponent {
   book(id: string) {
     this._router.navigate(['/event-details', id]);
   }
-}
+  update(id: string) {
+    this._router.navigate(['/update-event', id]);
+  }
+  delete(id :string){
+    
+    this._router.navigate(['/event-details', id]);
+  }
+  }
+

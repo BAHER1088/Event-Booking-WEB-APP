@@ -5,6 +5,7 @@ import { EventService } from '../../services/event.service';
 import { BookingService } from '../../services/booking.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -19,14 +20,18 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   imgDomain: string = '';
   event: any = {};
   errorMessage: string = ""
+  Message: string = ""
   tickets: number = 0;
-
+  isAdmin!:boolean;
   constructor(
     private _EventService: EventService,
     private _bookingService: BookingService,
+    private _authService:AuthService,
     private _router: Router,
     private _route: ActivatedRoute
-  ) { }
+  ) {
+    this.isAdmin = this._authService.isAdmin();
+   }
 
   loadEvent() {
     if (this.id && this.id.trim() !== '') {
@@ -50,7 +55,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.imgDomain = this._EventService.eventImages;
     this._route.params.subscribe(params => {
       this.id = params['id'];
@@ -58,7 +63,17 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     });
     this.loadTickets();
   }
-
+  delete(id :string){
+    this._EventService.deleteEvent(id).subscribe({
+      next: (res) => {
+        this._router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+         this.errorMessage = err.error.message;
+      }
+    });
+     
+  }
   book(id: string) {
     this.subscription = this._bookingService.bookEvent(id).subscribe({
       next: (res) => {

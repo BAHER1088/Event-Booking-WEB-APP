@@ -17,7 +17,6 @@ export const uploadImage = uploadSingleImage("image");
 
 export const resizeImage = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   if (!req.file) return next();
-
   const imageName = `event-${Date.now()}.jpeg`;
   const imagePath = path.join("uploads", "events", imageName);
 
@@ -27,7 +26,7 @@ export const resizeImage = asyncHandler(async (req: Request, res: Response, next
     .jpeg({ quality: 90 })
     .toFile(imagePath)
   req.body.image = `/uploads/events/${imageName}`
-  next();
+  next()
 });
 
 export const updateEvent = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -65,4 +64,5 @@ export const getAllEvents = asyncHandler(async (req: Request, res: Response, nex
     return next(new customErrors(req.t("No_more_events"), 404))
   }
   res.status(200).json({ pagination: features.paginationResult, data: events });
+  
 });

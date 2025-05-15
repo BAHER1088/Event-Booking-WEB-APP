@@ -27,7 +27,10 @@
 
       </div>
       <div class="book-now-container">
-        <button class="p-3 mt-3" (click)="book(event._id)" popovertarget="bookDone">Book Now</button>
+        <button class="p-2 mt-3 m-1" (click)="book(event._id)" popovertarget="bookDone">Book Now</button>
+         @if(isAdmin ){
+        <button class="  p-2 mt-3 m-1" (click)="delete(event._id)" popovertarget="bookDeleted">Delete</button>
+          }
         <div popover id="bookDone" class="custom-popover">
           <h2 class="header">Congratulations!</h2>
           <div class="content">
@@ -35,6 +38,13 @@
             <p>You can now view your tickets in the <a href="/my-tickets">My Tickets</a> page</p>
           </div>
         </div>
+        <div popover id="bookDeleted" class="custom-popover">
+          <h2 class="header">Event Deleted </h2>
+          <div class="content">
+            <p>You have successfully deleted the event</p>
+          </div>
+        </div>
+
         <p>{{errorMessage}}</p>
       </div>
     </div>
