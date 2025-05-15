@@ -46,27 +46,17 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadTickets() {
-    this.subscription = this._bookingService.getUserTickets().subscribe({
-      next: (res) => {
-        this.tickets = res.data.NumOfTickets;
-        console.log(this.tickets);
-      }
-    })
-  }
-
   ngOnInit() {
     this.imgDomain = this._EventService.eventImages;
     this._route.params.subscribe(params => {
       this.id = params['id'];
       this.loadEvent();
     });
-    this.loadTickets();
+ 
   }
   delete(id :string){
     this._EventService.deleteEvent(id).subscribe({
       next: (res) => {
-        this._router.navigate(['/dashboard']);
       },
       error: (err) => {
          this.errorMessage = err.error.message;

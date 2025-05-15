@@ -42,7 +42,6 @@ export const deleteEvent = asyncHandler(async (req: Request, res: Response, next
   if (!event) {
     return next(new customErrors(req.t("event_not_found"), 404))
   }
-  event.save();
   res.status(204).json({ message: req.t("deleted_successfully") });
 });
 
