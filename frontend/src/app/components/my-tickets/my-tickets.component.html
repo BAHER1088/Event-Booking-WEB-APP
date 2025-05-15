@@ -24,8 +24,8 @@
                                     <p class="mb-0">Number of tickets: {{ticket.numOfTickets }}</p>
                                 </div>
                                 <div class="ticket-actions">
-                                    <button class="btn btn-secondary m-1">Delete</button>
-                                    <button class="btn btn-primary m-1">View Event</button>
+                                    <button class="btn btn-secondary m-1" (click)="deleteTicket(ticket._id)">Delete</button>
+                                    <button class="btn btn-primary m-1"  (click)="routeTo(ticket)" >View Event</button>
                                 </div>
                             </div>
                             }

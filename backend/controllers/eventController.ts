@@ -6,6 +6,7 @@ import path from "path";
 import customErrors from "../middlwares/Errors";
 import { uploadSingleImage } from "../middlwares/uploadImages";
 import Features from "../middlwares/features";
+import bookingModel from "../Models/bookingModel";
 
 export const createEvent = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
