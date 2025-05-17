@@ -3,12 +3,14 @@
   <div class="row">
     <div class="col-md-5">
       <div class="main-img">
+        <div class="category text-bold">
+          <p>{{event.category}}
+        </div>
         <img class="img-fluid" [src]="imgDomain+ event.image" [alt]="event.name" title="event image">
       </div>
     </div>
     <div class="col-md-7 details-container">
       <div class="main-description">
-        <div class="category text-bold">{{event.category}}</div>
         <div class="event-title text-bold">{{event.name}}</div>
         <p class="description">{{event.description}}.</p>
         <hr>
@@ -28,9 +30,9 @@
       </div>
       <div class="book-now-container">
         <button class="p-2 mt-3 m-1" (click)="book(event._id)" popovertarget="bookDone">Book Now</button>
-         @if(isAdmin ){
+        @if(isAdmin ){
         <button class="  p-2 mt-3 m-1" (click)="delete(event._id)" popovertarget="bookDeleted">Delete</button>
-          }
+        }
         <div popover id="bookDone" class="custom-popover">
           <h2 class="header">Congratulations!</h2>
           <div class="content">

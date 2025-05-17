@@ -1,12 +1,39 @@
 .container {
     .row {
         .main-img {
+            position: relative;
             img {
                 border-radius: 4rem;
                 height: 500px;
                 width: 500px;
                 object-fit: cover;
-
+            }
+            .category {
+                // position: absolute;
+                position: absolute;
+                // height: 0px;
+                // padding: 500px;
+                // margin: 0px;
+                left: 380px;
+                // height: 50px;
+                // right: 350px;
+                // right: 10px;
+                top: 40px;
+                background-color: var(--primary);
+                color: var(--background);
+                padding: 0.5rem 1rem;
+                border-radius: 999rem;
+                font-size: 1.2rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                box-shadow: 0px 0px 20px var(--text-primary);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                p{
+                    margin: auto;
+                }
             }
         }
 
@@ -17,19 +44,7 @@
             min-height: 100%;
 
             .main-description {
-                .category {
-                    position: absolute;
-                    right: 350px;
-                    top: 265px;
-                    background-color: var(--primary);
-                    color: var(--background);
-                    padding: 0.5rem 1rem;
-                    border-radius: 999rem;
-                    font-size: 1.2rem;
-                    font-weight: 900;
-                    text-transform: uppercase;
-                    box-shadow: 0px 0px 20px var(--text-primary);
-                }
+                
 
                 .event-title {
                     font-size: 2rem;
