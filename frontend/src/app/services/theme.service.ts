@@ -34,6 +34,12 @@ export class ThemeService {
             document.documentElement.style.setProperty('--text-primary', isDark ? 'var(--dark-text-primary)' : 'var(--light-text-primary)');
             document.documentElement.style.setProperty('--text-secondary', isDark ? 'var(--dark-text-secondary)' : 'var(--light-text-secondary)');
             document.documentElement.style.setProperty('--text-tertiary', isDark ? 'var(--dark-text-tertiary)' : 'var(--light-text-tertiary)');
+            document.documentElement.style.setProperty('--footer', isDark ? 'var(--dark-footer)' : 'var(--light-footer)');
+            document.documentElement.style.setProperty('--header', isDark ? 'var(--dark-header)' : 'var(--light-header)');
+            document.documentElement.style.setProperty('--btn', isDark ? 'var(--light-header)' : 'var(--dark-header)');
+
+
+
             
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }

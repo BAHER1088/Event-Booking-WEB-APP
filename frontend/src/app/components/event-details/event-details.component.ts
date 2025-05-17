@@ -5,11 +5,12 @@ import { EventService } from '../../services/event.service';
 import { BookingService } from '../../services/booking.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
   selector: 'app-event-details',
-  imports: [NavbarComponent, FooterComponent, CurrencyPipe, DatePipe],
+  imports: [NavbarComponent, CurrencyPipe, DatePipe],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.scss'
 })
@@ -19,14 +20,18 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   imgDomain: string = '';
   event: any = {};
   errorMessage: string = ""
+  Message: string = ""
   tickets: number = 0;
-
+  isAdmin!:boolean;
   constructor(
     private _EventService: EventService,
     private _bookingService: BookingService,
+    private _authService:AuthService,
     private _router: Router,
     private _route: ActivatedRoute
-  ) { }
+  ) {
+    this.isAdmin = this._authService.isAdmin();
+   }
 
   loadEvent() {
     if (this.id && this.id.trim() !== '') {
@@ -41,24 +46,24 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadTickets() {
-    this.subscription = this._bookingService.getUserTickets().subscribe({
-      next: (res) => {
-        this.tickets = res.data.NumOfTickets;
-        console.log(this.tickets);
-      }
-    })
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.imgDomain = this._EventService.eventImages;
     this._route.params.subscribe(params => {
       this.id = params['id'];
       this.loadEvent();
     });
-    this.loadTickets();
+ 
   }
-
+  delete(id :string){
+    this._EventService.deleteEvent(id).subscribe({
+      next: (res) => {
+      },
+      error: (err) => {
+         this.errorMessage = err.error.message;
+      }
+    });
+     
+  }
   book(id: string) {
     this.subscription = this._bookingService.bookEvent(id).subscribe({
       next: (res) => {
